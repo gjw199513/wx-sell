@@ -14,18 +14,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.math.BigDecimal;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 /**
  * @author gjw19
  * @date 2018/12/1
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ProductInfoServiceimplTest {
+public class ProductServiceimplTest {
 
     @Autowired
-    private ProductInfoServiceimpl productInfoService;
+    private ProductServiceimpl productInfoService;
 
     @Test
     public void findOne() {

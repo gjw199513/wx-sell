@@ -5,8 +5,8 @@ import com.gjw.sell.VO.ProductVO;
 import com.gjw.sell.VO.ResultVO;
 import com.gjw.sell.dataobject.ProductCategory;
 import com.gjw.sell.dataobject.ProductInfo;
-import com.gjw.sell.service.ProductCategoryService;
-import com.gjw.sell.service.ProductInfoService;
+import com.gjw.sell.service.CategoryService;
+import com.gjw.sell.service.ProductService;
 import com.gjw.sell.utils.ResultVOUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,15 +28,15 @@ import java.util.stream.Collectors;
 public class BuyerProductController {
 
     @Autowired
-    private ProductInfoService productInfoService;
+    private ProductService productService;
 
     @Autowired
-    private ProductCategoryService productCategoryService;
+    private CategoryService categoryService;
 
     @GetMapping("/list")
     public ResultVO list(){
         // 1. 查询所有的上架商品
-        List<ProductInfo> productInfoList = productInfoService.findUpAll();
+        List<ProductInfo> productInfoList = productService.findUpAll();
 
         // 2. 查询类目（一次性查询）
 //        List<Integer> categoryTypeList = new ArrayList<>();
@@ -50,7 +48,7 @@ public class BuyerProductController {
         List<Integer> categoryTypeList = productInfoList.stream()
                 .map(e -> e.getCategoryType())
                 .collect(Collectors.toList());
-        List<ProductCategory> productCategoryList = productCategoryService.findByCategoryTypeIn(categoryTypeList);
+        List<ProductCategory> productCategoryList = categoryService.findByCategoryTypeIn(categoryTypeList);
 
         // 3. 数据拼装
         List<ProductVO> productVOList = new ArrayList<>();

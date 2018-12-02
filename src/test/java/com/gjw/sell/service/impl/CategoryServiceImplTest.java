@@ -17,10 +17,10 @@ import java.util.List;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ProductCategoryServiceImplTest {
+public class CategoryServiceImplTest {
 
     @Autowired
-    private ProductCategoryServiceImpl categoryService;
+    private CategoryServiceImpl categoryService;
 
     @Test
     public void findOne() {

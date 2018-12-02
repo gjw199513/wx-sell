@@ -1,6 +1,7 @@
 package com.gjw.sell.service;
 
 import com.gjw.sell.dataobject.ProductInfo;
+import com.gjw.sell.dto.CartDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * @author gjw19
  * @date 2018/12/1
  */
-public interface ProductInfoService {
+public interface ProductService {
 
     ProductInfo findOne(String productId);
 
@@ -30,9 +31,18 @@ public interface ProductInfoService {
 
     ProductInfo save(ProductInfo productInfo);
 
-    // 加库存
+    /**
+     * 加库存
+     *
+     * @param cartDTOList
+     */
+    void increaseStock(List<CartDTO> cartDTOList);
 
-    // 减库存
-
+    /**
+     * 减库存
+     *
+     * @param cartDTOList
+     */
+    void decreaseStock(List<CartDTO> cartDTOList);
 
 }
