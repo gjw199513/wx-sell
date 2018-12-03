@@ -1,6 +1,7 @@
 package com.gjw.sell.dataobject;
 
-
+import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,10 +9,12 @@ import javax.persistence.Id;
 
 /**
  * 类目
- * @author Administrator
- * @since 2018/11/30.
+ * @author gjw19
+ * @date 2018/11/30
  */
 @Entity
+@DynamicUpdate // 动态更新
+@Data
 public class ProductCategory {
 
     /** 类目id. */
@@ -25,36 +28,14 @@ public class ProductCategory {
     /** 类目编号. */
     private Integer categoryType;
 
-    public Integer getCategoryId() {
-        return categoryId;
+    /**
+     *  jpa查询需要无参构造方法
+     */
+    public ProductCategory() {
     }
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
+    public ProductCategory(String categoryName, Integer categoryType) {
         this.categoryName = categoryName;
-    }
-
-    public Integer getCategoryType() {
-        return categoryType;
-    }
-
-    public void setCategoryType(Integer categoryType) {
         this.categoryType = categoryType;
-    }
-
-    @Override
-    public String toString() {
-        return "ProductCategory{" +
-                "categoryId=" + categoryId +
-                ", categoryName='" + categoryName + '\'' +
-                ", categoryType=" + categoryType +
-                '}';
     }
 }
