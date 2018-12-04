@@ -71,4 +71,6 @@ public class ProductServiceimplTest {
         ProductInfo result = productService.offSale("123456");
         Assert.assertEquals(ProductStatusEnum.DOWN, result.getProductStatusEnum());
     }
+
+
 }

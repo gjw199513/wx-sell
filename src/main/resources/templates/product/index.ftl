@@ -16,7 +16,7 @@
                         <div class="form-group">
                             <label>名称</label>
                             <input name="productName" type="text" class="form-control" value="${(productInfo.productName)!''}"/>
-                        </div>
+                            <#--</div>-->
                         <div class="form-group">
                             <label>价格</label>
                             <input name="productPrice" type="text" class="form-control" value="${(productInfo.productPrice)!''}"/>
