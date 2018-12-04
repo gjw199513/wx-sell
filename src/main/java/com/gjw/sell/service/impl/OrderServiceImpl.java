@@ -13,6 +13,7 @@ import com.gjw.sell.exception.SellException;
 import com.gjw.sell.repository.OrderDetailRepository;
 import com.gjw.sell.repository.OrderMasterRepository;
 import com.gjw.sell.service.OrderService;
+import com.gjw.sell.service.PayService;
 import com.gjw.sell.service.ProductService;
 import com.gjw.sell.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -46,6 +47,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderMasterRepository orderMasterRepository;
+
+    @Autowired
+    private PayService payService;
 
     @Override
     @Transactional
@@ -157,7 +161,7 @@ public class OrderServiceImpl implements OrderService {
         productService.increaseStock(cartDTOList);
 
         if (PayStatusEnum.SUCCESS.getCode().equals(orderDTO.getPayStatus())) {
-            // todo
+            payService.refund(orderDTO);
         }
         return orderDTO;
     }
