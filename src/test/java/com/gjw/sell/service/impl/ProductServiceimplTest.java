@@ -47,7 +47,7 @@ public class ProductServiceimplTest {
     @Test
     public void save() {
         ProductInfo productInfo = new ProductInfo();
-        productInfo.setProductId("123457");
+        productInfo.setProductId("1234568");
         productInfo.setProductName("皮皮虾");
         productInfo.setProductPrice(new BigDecimal(3.2));
         productInfo.setProductStock(100);

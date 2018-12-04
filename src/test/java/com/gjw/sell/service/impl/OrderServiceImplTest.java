@@ -47,12 +47,12 @@ public class OrderServiceImplTest {
         o1.setProductId("1234568");
         o1.setProductQuantity(1);
 
-        OrderDetail o2 = new OrderDetail();
-        o2.setProductId("123457");
-        o2.setProductQuantity(2);
+//        OrderDetail o2 = new OrderDetail();
+//        o2.setProductId("123457");
+//        o2.setProductQuantity(2);
 
         orderDetailList.add(o1);
-        orderDetailList.add(o2);
+//        orderDetailList.add(o2);
 
         orderDTO.setOrderDetailList(orderDetailList);
 
@@ -94,5 +94,13 @@ public class OrderServiceImplTest {
         OrderDTO orderDTO = orderService.findOne(ORDER_ID);
         OrderDTO result = orderService.paid(orderDTO);
         Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(), result.getPayStatus());
+    }
+
+    @Test
+    public void list() {
+        PageRequest request = new PageRequest(0, 2);
+        Page<OrderDTO> orderDTOPage = orderService.findList(request);
+//        Assert.assertNotEquals(0, orderDTOPage.getTotalElements());
+        Assert.assertTrue("查询所有的订单列表", orderDTOPage.getTotalElements() > 0);
     }
 }
