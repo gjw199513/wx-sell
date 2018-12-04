@@ -23,24 +23,24 @@ import java.util.List;
 public class ProductServiceimplTest {
 
     @Autowired
-    private ProductServiceimpl productInfoService;
+    private ProductServiceimpl productService;
 
     @Test
     public void findOne() {
-        ProductInfo productInfo = productInfoService.findOne("123456");
+        ProductInfo productInfo = productService.findOne("123456");
         Assert.assertEquals("123456",productInfo.getProductId());
     }
 
     @Test
     public void findUpAll() {
-        List<ProductInfo> productInfoList = productInfoService.findUpAll();
+        List<ProductInfo> productInfoList = productService.findUpAll();
         Assert.assertNotEquals(0,productInfoList.size());
     }
 
     @Test
     public void findAll() {
         PageRequest pageRequest = new PageRequest(0,2);
-        Page<ProductInfo> productInfoPage = productInfoService.findAll(pageRequest);
+        Page<ProductInfo> productInfoPage = productService.findAll(pageRequest);
         System.out.println(productInfoPage.getTotalElements());
     }
 
@@ -56,7 +56,19 @@ public class ProductServiceimplTest {
         productInfo.setProductStatus(ProductStatusEnum.DOWN.getCode());
         productInfo.setCategoryType(2);
 
-        ProductInfo result = productInfoService.save(productInfo);
+        ProductInfo result = productService.save(productInfo);
         Assert.assertNotNull(result);
+    }
+
+    @Test
+    public void onSale() {
+        ProductInfo result = productService.onSale("123456");
+        Assert.assertEquals(ProductStatusEnum.UP, result.getProductStatusEnum());
+    }
+
+    @Test
+    public void offSale() {
+        ProductInfo result = productService.offSale("123456");
+        Assert.assertEquals(ProductStatusEnum.DOWN, result.getProductStatusEnum());
     }
 }
